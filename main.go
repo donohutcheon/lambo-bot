@@ -1,4 +1,4 @@
-package lambo_bot
+package main
 
 import (
 	"fmt"
