@@ -16,7 +16,7 @@ on: [push]
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GKE_CLUSTER: ci-test-autopilot-cluster-1
+  GKE_CLUSTER: lambo-bot
   GKE_ZONE: europe-west1
   DEPLOYMENT_NAME: lambo-bot
   IMAGE: lambo-bot

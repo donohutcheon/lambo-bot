@@ -4,8 +4,8 @@
 
 ### Run Docker Locally:
 ```shell
-docker build . --tag ci-test --rm
-docker run --env PORT=8080 ci-test
+docker build . --tag lambo-bot --rm
+docker run --env PORT=8080 lambo-bot
 ```
 
 ### gcloud Commands
