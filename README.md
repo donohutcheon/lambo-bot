@@ -32,9 +32,28 @@ gcloud projects add-iam-policy-binding lambo-bot \
     --member="serviceAccount:lambo-bot-github-action@lambo-bot.iam.gserviceaccount.com" \
     --role="roles/storage.buckets.create"
   
+gcloud projects add-iam-policy-binding lambo-bot \
+    --member="serviceAccount:lambo-bot-github-action@lambo-bot.iam.gserviceaccount.com" \
+    --role="roles/compute.loadBalancerAdmin"
 ```
 
 Create new gke cluster:
 ```shell
 gcloud container clusters create lambo-bot --release-channel regular --zone europe-west1 --node-locations europe-west1
+
+gcloud beta container --project "lambo-bot" clusters create "lambo-bot" \
+    --region "europe-west1" --no-enable-basic-auth --cluster-version "1.17.17-gke.1101" \
+    --release-channel "stable" --machine-type "g1-small" --image-type "COS" \
+    --disk-type "pd-standard" --disk-size "32" --metadata disable-legacy-endpoints=true \
+    --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" \
+    --num-nodes "3" --no-enable-stackdriver-kubernetes --enable-ip-alias \
+    --network "projects/lambo-bot/global/networks/default" --subnetwork "projects/lambo-bot/regions/europe-west1/subnetworks/default" \
+    --default-max-pods-per-node "110" --no-enable-master-authorized-networks \
+    --addons HorizontalPodAutoscaling,HttpLoadBalancing --enable-autoupgrade --enable-autorepair \
+    --max-surge-upgrade 1 --max-unavailable-upgrade 0
+```
+
+
+```shell
+gcloud compute addresses create NAME --project=lambo-bot --network-tier=STANDARD --region=europe-west1
 ```
