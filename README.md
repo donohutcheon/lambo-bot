@@ -57,5 +57,6 @@ gcloud beta container --project "lambo-bot" clusters create "lambo-bot" --zone "
 
 
 ```shell
-gcloud compute addresses create NAME --project=lambo-bot --network-tier=STANDARD --region=europe-west1
+gcloud compute addresses create NAME --project=lambo-bot --network-tier=STANDARD --region=us-east1-d
+gcloud compute addresses create lambo-bot-address --global
 ```

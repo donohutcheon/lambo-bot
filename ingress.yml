@@ -3,12 +3,10 @@ kind: Ingress
 metadata:
   name: lambo-bot-ing
   annotations:
+    kubernetes.io/ingress.global-static-ip-name: lambo-bot-address
+    networking.gke.io/managed-certificates: lambo-bot-cert
     kubernetes.io/ingress.class: gce
 spec:
-  rules:
-    - http:
-        paths:
-          - path: /*
-            backend:
-              serviceName: lambo-bot-ing
-              servicePort: 80
+  backend:
+    serviceName: lambo-bot-service
+    servicePort: 80

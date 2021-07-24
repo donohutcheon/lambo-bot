@@ -1,0 +1,9 @@
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: lambo-bot-cert
+spec:
+  domains:
+    - lambobot.xyz
+    - www.lambobot.xyz
